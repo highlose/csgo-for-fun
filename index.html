@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Cheats for CS:GO</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #111827;
+        }
+        .page-transition {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-blue-500 selection:text-white">
+
+    <!-- Header / Author Badge -->
+    <header class="w-full px-6 py-4 flex justify-end max-w-7xl mx-auto">
+        <div class="bg-gray-50 border border-gray-100 px-4 py-2 rounded-xl text-sm font-medium text-gray-700 shadow-sm">
+            Author: highlose!
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-6 py-8">
+
+        <!-- HOME PAGE SECTION -->
+        <section id="home-section" class="page-transition opacity-100 transform translate-y-0">
+            <div class="max-w-3xl space-y-4 pt-4">
+                <!-- Small top title -->
+                <p class="text-sm font-semibold text-gray-500 tracking-wide">
+                    All Cheats for CS:GO
+                </p>
+
+                <!-- Main heading -->
+                <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tight leading-tight">
+                    Добро пожаловать (домашняя страница)
+                </h1>
+
+                <!-- Descriptions -->
+                <p class="text-lg text-gray-600 font-normal leading-relaxed">
+                    Сайт с самыми старыми, но в то же время лучшими читами за всю историю CS:GO!
+                </p>
+                
+                <div class="space-y-1 pt-2 text-gray-600">
+                    <p>Мы сохранили эксклюзивные версии старых читов таких как OnetapV3!</p>
+                    <p>
+                        <a href="#about" onclick="openAboutModal(event)" class="text-blue-600 hover:underline font-medium inline-flex items-center gap-1">
+                            О нас. (кто мы?)
+                        </a>
+                    </p>
+                </div>
+
+                <!-- Catalog Button -->
+                <div class="pt-6">
+                    <button onclick="switchView('catalog')" class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-3 rounded-xl shadow-md hover:shadow-lg transition-all transform active:scale-95">
+                        <span>Каталог читов</span>
+                        <i class="fa-solid fa-arrow-right text-sm"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- CATALOG SECTION (Hidden by default) -->
+        <section id="catalog-section" class="page-transition opacity-0 pointer-events-none hidden transform translate-y-4">
+            <div class="space-y-6">
+                <!-- Top navigation inside catalog -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-100 pb-6">
+                    <div>
+                        <button onclick="switchView('home')" class="inline-flex items-center gap-2 text-sm font-medium text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 px-4 py-2 rounded-xl transition-colors mb-2">
+                            <i class="fa-solid fa-arrow-left"></i> Назад на главную
+                        </button>
+                        <h2 class="text-3xl font-extrabold text-gray-900 tracking-tight">Каталог легендарных читов CS:GO</h2>
+                        <p class="text-gray-500 text-sm mt-1">Выберите софт для просмотра архивов, версий и конфигов.</p>
+                    </div>
+                    <!-- Search Input -->
+                    <div class="w-full sm:w-72">
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
+                                <i class="fa-solid fa-search"></i>
+                            </span>
+                            <input type="text" id="cheat-search" oninput="filterCheats()" placeholder="Поиск читов..." class="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-blue-500 focus:bg-white transition-all">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cards Grid -->
+                <div id="cheats-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
+                    <!-- Cards will be populated via JS or static HTML -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="w-full border-t border-gray-100 mt-20 py-12">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8 text-sm text-gray-600">
+            <!-- Left column -->
+            <div class="space-y-3">
+                <p class="font-semibold text-gray-900">Возникли вопросы?</p>
+                <p class="hover:text-gray-900 cursor-pointer transition-colors">Быстро ответим!</p>
+                <p class="pt-2">
+                    <a href="https://github.com/K3rrr1337/Allcheatsforcsgo" target="_blank" class="hover:text-blue-600 transition-colors">
+                        Наш репозиторий в Гитхабе!
+                    </a>
+                </p>
+            </div>
+            <!-- Right column -->
+            <div class="space-y-3">
+                <p class="font-semibold text-gray-900">Полезное</p>
+                <p class="hover:text-gray-900 cursor-pointer transition-colors">Новости о читах!</p>
+                <p class="hover:text-gray-900 cursor-pointer transition-colors">Наш телеграм-канал!</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Dialog (Custom Alert / Info Box) -->
+    <div id="custom-modal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="bg-white rounded-2xl max-w-md w-full mx-4 p-6 shadow-2xl transform scale-95 transition-transform duration-300" id="modal-content-box">
+            <div class="flex justify-between items-center mb-4">
+                <h3 id="modal-title" class="text-lg font-bold text-gray-900">Информация</h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 p-1 rounded-lg">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <div id="modal-body" class="text-gray-600 text-sm leading-relaxed mb-6">
+                <!-- Modal dynamic text -->
+            </div>
+            <div class="flex justify-end">
+                <button onclick="closeModal()" class="bg-gray-900 hover:bg-gray-800 text-white px-5 py-2.5 rounded-xl text-sm font-medium transition-colors">
+                    Понятно
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Database of legendary CS:GO cheats matching user request
+        const cheatsData = [
+            {
+                name: "OneTap V3",
+                category: "Rage / HvH",
+                description: "Легендарный хвх софт эпохи 2020 года с непревзойденным Resolver и кастомными JS-скриптами.",
+                image: "https://placehold.co/600x350/1e293b/38bdf8?text=OneTap+V3",
+                version: "v3.0.3 Cracked"
+            },
+            {
+                name: "Airflow",
+                category: "Legit / Semi-Rage",
+                description: "Ультра-плавный софт с красивым интерфейсом, популярный среди любителей визуалов и красивых киллов.",
+                image: "https://placehold.co/600x350/0f172a/f43f5e?text=Airflow+CSGO",
+                version: "v2.4 Stable"
+            },
+            {
+                name: "Fatality",
+                category: "HvH Classic",
+                description: "Культовый чит с уникальным звуковым сопровождением и мощным функционалом для серверных баталий.",
+                image: "https://placehold.co/600x350/111827/eab308?text=Fatality.win",
+                version: "Latest Build"
+            },
+            {
+                name: "Gamesense (Skeet)",
+                category: "Elite HvH",
+                description: "Элитный инвайт-чит, определивший стандарты хвх-сообщества CS:GO на годы вперед.",
+                image: "https://placehold.co/600x350/18181b/a855f7?text=Gamesense.pub",
+                version: "Archive Edition"
+            },
+            {
+                name: "Primordial",
+                category: "Modern Rage",
+                description: "Современный софт с гибкой настройкой визуальной части и высокой скоростью хитскана.",
+                image: "https://placehold.co/600x350/09090b/10b981?text=Primordial.dev",
+                version: "v1.9 Archive"
+            },
+            {
+                name: "Neverlose",
+                category: "HvH Dominator",
+                description: "Флагманский софт с продвинутой системой луа-скриптинга и потрясающим пользовательским опытом.",
+                image: "https://placehold.co/600x350/1e1b4b/6366f1?text=Neverlose.cc",
+                version: "Legacy Build"
+            }
+        ];
+
+        // Render cheat cards on load
+        function renderCheats(items) {
+            const grid = document.getElementById('cheats-grid');
+            grid.innerHTML = '';
+
+            if (items.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full py-12 text-center text-gray-500">
+                        <i class="fa-regular fa-folder-open text-4xl mb-3 text-gray-300"></i>
+                        <p class="font-medium">Читы не найдены</p>
+                    </div>
+                `;
+                return;
+            }
+
+            items.forEach((cheat, index) => {
+                const card = document.createElement('div');
+                card.className = "bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group transform hover:-translate-y-1";
+                card.innerHTML = `
+                    <div>
+                        <div class="relative overflow-hidden aspect-video bg-gray-100">
+                            <img src="${cheat.image}" alt="${cheat.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x350/334155/ffffff?text=CSGO+Cheat'">
+                            <span class="absolute top-3 right-3 bg-black/60 backdrop-blur-md text-white text-xs font-medium px-2.5 py-1 rounded-lg">
+                                ${cheat.category}
+                            </span>
+                        </div>
+                        <div class="p-5 space-y-2">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors">${cheat.name}</h3>
+                                <span class="text-xs text-gray-500 bg-gray-50 px-2 py-1 rounded-md border border-gray-100">${cheat.version}</span>
+                            </div>
+                            <p class="text-sm text-gray-600 leading-relaxed line-clamp-2">${cheat.description}</p>
+                        </div>
+                    </div>
+                    <div class="p-5 pt-0">
+                        <button onclick="openCheatDetails('${cheat.name}')" class="w-full bg-gray-50 hover:bg-blue-600 hover:text-white text-gray-700 font-medium py-2.5 rounded-xl text-sm transition-all flex items-center justify-center gap-2 border border-gray-100 group-hover:border-transparent">
+                            <span>Открыть архив</span>
+                            <i class="fa-solid fa-download text-xs"></i>
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // View Switcher (Home <-> Catalog)
+        function switchView(viewName) {
+            const home = document.getElementById('home-section');
+            const catalog = document.getElementById('catalog-section');
+
+            if (viewName === 'catalog') {
+                home.classList.add('opacity-0', 'pointer-events-none', 'hidden', '-translate-y-4');
+                catalog.classList.remove('opacity-0', 'pointer-events-none', 'hidden', 'translate-y-4');
+                catalog.classList.add('opacity-100', 'translate-y-0');
+                renderCheats(cheatsData);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                catalog.classList.add('opacity-0', 'pointer-events-none', 'hidden', 'translate-y-4');
+                home.classList.remove('opacity-0', 'pointer-events-none', 'hidden', '-translate-y-4');
+                home.classList.add('opacity-100', 'translate-y-0');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // Filter search
+        function filterCheats() {
+            const query = document.getElementById('cheat-search').value.toLowerCase();
+            const filtered = cheatsData.filter(c => 
+                c.name.toLowerCase().includes(query) || 
+                c.description.toLowerCase().includes(query) ||
+                c.category.toLowerCase().includes(query)
+            );
+            renderCheats(filtered);
+        }
+
+        // Modal Functions
+        function openAboutModal(e) {
+            e.preventDefault();
+            showModal("О нас (Кто мы?)", "Мы — энтузиасты и архивариусы старой школы CS:GO, объединившиеся ради сохранения наследия легендарных читов и HvH-культуры. Проект создан в исторических и образовательных целях.");
+        }
+
+        function openCheatDetails(cheatName) {
+            showModal(`Архив: ${cheatName}`, `Вы собираетесь получить доступ к файлам и конфигурациям для ${cheatName}. Все файлы проверены сообществом и хранятся в репозитории на GitHub.`);
+        }
+
+        function showModal(title, text) {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-body').innerText = text;
+            const modal = document.getElementById('custom-modal');
+            const box = document.getElementById('modal-content-box');
+            
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            box.classList.remove('scale-95');
+            box.classList.add('scale-100');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('custom-modal');
+            const box = document.getElementById('modal-content-box');
+            
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            box.classList.remove('scale-100');
+            box.classList.add('scale-95');
+        }
+
+        // Initialize on load
+        window.onload = function() {
+            renderCheats(cheatsData);
+        }
+    </script>
+</body>
+</html>
