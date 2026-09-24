@@ -151,7 +151,7 @@
         </div>
     </footer>
 
-    <!-- Modal Dialog (Keep for About info) -->
+    <!-- Modal Dialog (About info) -->
     <div id="custom-modal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
         <div class="bg-white rounded-2xl max-w-md w-full mx-4 p-6 shadow-2xl transform scale-95 transition-transform duration-300" id="modal-content-box">
             <div class="flex justify-between items-center mb-4">
@@ -169,9 +169,15 @@
         </div>
     </div>
 
+    <!-- Lightbox Modal (Image Zoom) -->
+    <div id="lightbox-modal" class="fixed inset-0 bg-black/90 z-[60] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 backdrop-blur-md" onclick="closeLightbox(event)">
+        <button class="absolute top-6 right-6 text-white/70 hover:text-white transition-colors p-3 bg-black/20 hover:bg-black/50 rounded-full" onclick="closeLightbox(event)">
+            <i class="fa-solid fa-xmark text-2xl pointer-events-none"></i>
+        </button>
+        <img id="lightbox-image" src="" alt="Zoomed Screenshot" class="max-w-[95vw] max-h-[90vh] object-contain rounded-xl shadow-2xl transform scale-95 transition-transform duration-300">
+    </div>
+
     <script>
-        // Обновленная база данных. Добавлены массивы со скриншотами и ссылки на GitHub Releases.
-        // Замените ссылки downloadUrl на ваши актуальные линки из GitHub.
         const cheatsData = [
             {
                 name: "OneTap V3",
@@ -255,7 +261,6 @@
             });
         }
 
-        // Обновленная функция управления видимостью секций
         function switchView(viewName) {
             const views = {
                 'home': document.getElementById('home-section'),
@@ -263,27 +268,22 @@
                 'product': document.getElementById('product-section')
             };
 
-            // Скрываем все
             Object.values(views).forEach(view => {
                 view.classList.add('opacity-0', 'pointer-events-none', 'hidden');
-                // Добавляем эффект выезда снизу для скрытых
                 if (view.id !== 'home-section') view.classList.add('translate-y-4');
                 else view.classList.add('-translate-y-4');
                 
-                view.classList.remove('absolute', 'top-8', 'left-6', 'right-6'); // Очищаем позиционирование
+                view.classList.remove('absolute', 'top-8', 'left-6', 'right-6');
             });
 
-            // Показываем нужную
             const activeView = views[viewName];
             activeView.classList.remove('hidden');
             
-            // Небольшая задержка для того, чтобы transition сработал после убирания display: none
             setTimeout(() => {
                 activeView.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4', '-translate-y-4');
                 activeView.classList.add('opacity-100', 'translate-y-0');
             }, 10);
 
-            // Если не главная, делаем абсолютной, чтобы контейнеры не ломали высоту при анимации
             if(viewName !== 'home') {
                 activeView.classList.add('absolute', 'top-8', 'left-6', 'right-6');
             }
@@ -292,27 +292,28 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Новая функция для открытия страницы конкретного чита
         function openCheatPage(cheatName) {
             const cheat = cheatsData.find(c => c.name === cheatName);
             if (!cheat) return;
 
-            // Заполнение данных на странице товара
             document.getElementById('product-title').innerText = cheat.name;
             document.getElementById('product-category').innerText = cheat.category;
             document.getElementById('product-version').innerText = cheat.version;
             document.getElementById('product-description').innerText = cheat.description;
             document.getElementById('product-download').href = cheat.downloadUrl;
 
-            // Заполнение скриншотов
             const screenshotsContainer = document.getElementById('product-screenshots');
             screenshotsContainer.innerHTML = '';
             
             if (cheat.screenshots && cheat.screenshots.length > 0) {
                 cheat.screenshots.forEach(src => {
+                    // Добавлен класс group, overlay с иконкой лупы и onclick обработчик
                     screenshotsContainer.innerHTML += `
-                        <div class="aspect-video bg-gray-100 rounded-xl overflow-hidden border border-gray-200">
-                            <img src="${src}" alt="Скриншот ${cheat.name}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer">
+                        <div class="aspect-video bg-gray-100 rounded-xl overflow-hidden border border-gray-200 group relative cursor-pointer" onclick="openLightbox('${src}')">
+                            <img src="${src}" alt="Скриншот ${cheat.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center pointer-events-none">
+                                <i class="fa-solid fa-magnifying-glass-plus text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-lg"></i>
+                            </div>
                         </div>
                     `;
                 });
@@ -320,7 +321,6 @@
                 screenshotsContainer.innerHTML = `<p class="text-gray-400 text-sm italic">Скриншоты пока не добавлены.</p>`;
             }
 
-            // Переключаем вид
             switchView('product');
         }
 
@@ -358,6 +358,46 @@
             box.classList.remove('scale-100');
             box.classList.add('scale-95');
         }
+
+        // --- Новые функции для Lightbox (Зум изображений) ---
+        function openLightbox(src) {
+            const modal = document.getElementById('lightbox-modal');
+            const img = document.getElementById('lightbox-image');
+            
+            img.src = src;
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            
+            // Небольшая задержка для применения трансформации после снятия display:none / opacity
+            setTimeout(() => {
+                img.classList.remove('scale-95');
+                img.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeLightbox(e) {
+            // Закрываем окно только если клик был по фону или кнопке (не по самой картинке)
+            if (e && e.target.id === 'lightbox-image') return;
+            
+            const modal = document.getElementById('lightbox-modal');
+            const img = document.getElementById('lightbox-image');
+            
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            img.classList.remove('scale-100');
+            img.classList.add('scale-95');
+            
+            // Очищаем src после завершения анимации, чтобы при следующем открытии не было мерцания старой картинки
+            setTimeout(() => {
+                img.src = '';
+            }, 300);
+        }
+
+        // Обработчик клавиши Escape для закрытия всех модальных окон
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeLightbox();
+                closeModal();
+            }
+        });
 
         window.onload = function() {
             renderCheats(cheatsData);
