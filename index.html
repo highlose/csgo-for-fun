@@ -36,21 +36,15 @@
         <!-- HOME PAGE SECTION -->
         <section id="home-section" class="page-transition opacity-100 transform translate-y-0">
             <div class="max-w-3xl space-y-4 pt-4">
-                <!-- Small top title -->
                 <p class="text-sm font-semibold text-gray-500 tracking-wide">
                     All Cheats for CS:GO
                 </p>
-
-                <!-- Main heading -->
                 <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tight leading-tight">
                     Добро пожаловать!
                 </h1>
-
-                <!-- Descriptions -->
                 <p class="text-lg text-gray-600 font-normal leading-relaxed">
                     Сайт с самыми старыми, но в то же время лучшими читами за всю историю CS:GO!
                 </p>
-                
                 <div class="space-y-1 pt-2 text-gray-600">
                     <p>Мы сохранили эксклюзивные версии старых читов таких как OnetapV3!</p>
                     <p>
@@ -59,8 +53,6 @@
                         </a>
                     </p>
                 </div>
-
-                <!-- Catalog Button -->
                 <div class="pt-6">
                     <button onclick="switchView('catalog')" class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-3 rounded-xl shadow-md hover:shadow-lg transition-all transform active:scale-95">
                         <span>Каталог читов</span>
@@ -70,10 +62,9 @@
             </div>
         </section>
 
-        <!-- CATALOG SECTION (Hidden by default) -->
-        <section id="catalog-section" class="page-transition opacity-0 pointer-events-none hidden transform translate-y-4">
+        <!-- CATALOG SECTION -->
+        <section id="catalog-section" class="page-transition opacity-0 pointer-events-none hidden absolute top-8 left-6 right-6 max-w-7xl mx-auto">
             <div class="space-y-6">
-                <!-- Top navigation inside catalog -->
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-100 pb-6">
                     <div>
                         <button onclick="switchView('home')" class="inline-flex items-center gap-2 text-sm font-medium text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 px-4 py-2 rounded-xl transition-colors mb-2">
@@ -82,7 +73,6 @@
                         <h2 class="text-3xl font-extrabold text-gray-900 tracking-tight">Каталог легендарных читов CS:GO</h2>
                         <p class="text-gray-500 text-sm mt-1">Выберите софт для просмотра архивов, версий и конфигов.</p>
                     </div>
-                    <!-- Search Input -->
                     <div class="w-full sm:w-72">
                         <div class="relative">
                             <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
@@ -92,10 +82,50 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Cards Grid -->
                 <div id="cheats-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
-                    <!-- Cards will be populated via JS or static HTML -->
+                    <!-- Cards via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- PRODUCT DETAILS SECTION -->
+        <section id="product-section" class="page-transition opacity-0 pointer-events-none hidden absolute top-8 left-6 right-6 max-w-7xl mx-auto">
+            <div class="space-y-6">
+                <!-- Navigation -->
+                <button onclick="switchView('catalog')" class="inline-flex items-center gap-2 text-sm font-medium text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 px-4 py-2 rounded-xl transition-colors mb-2">
+                    <i class="fa-solid fa-arrow-left"></i> Назад в каталог
+                </button>
+
+                <!-- Product Content Layout -->
+                <div class="bg-white border border-gray-100 rounded-2xl p-6 md:p-10 shadow-sm flex flex-col md:flex-row gap-10">
+                    
+                    <!-- Left: Info & Download -->
+                    <div class="w-full md:w-1/3 flex flex-col space-y-6">
+                        <div>
+                            <span id="product-category" class="text-xs font-semibold tracking-wider text-blue-600 uppercase bg-blue-50 px-2.5 py-1 rounded-md">Category</span>
+                            <h2 id="product-title" class="text-3xl md:text-4xl font-extrabold text-gray-900 mt-3 mb-2">Cheat Name</h2>
+                            <span id="product-version" class="inline-block text-sm text-gray-500 bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-100">v1.0</span>
+                        </div>
+                        
+                        <p id="product-description" class="text-gray-600 leading-relaxed text-base"></p>
+
+                        <div class="pt-4 border-t border-gray-100 mt-auto">
+                            <!-- Download Button -->
+                            <a id="product-download" href="#" target="_blank" class="w-full flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-6 rounded-xl shadow-md hover:shadow-lg transition-all transform active:scale-95 text-lg">
+                                <i class="fa-solid fa-download"></i>
+                                Установить (.dll)
+                            </a>
+                            <p class="text-xs text-gray-400 text-center mt-3">Файл загружается напрямую с GitHub Releases</p>
+                        </div>
+                    </div>
+
+                    <!-- Right: Screenshots -->
+                    <div class="w-full md:w-2/3 space-y-4">
+                        <h3 class="text-xl font-bold text-gray-900 border-b border-gray-100 pb-3">Скриншоты меню и визуала</h3>
+                        <div id="product-screenshots" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <!-- Screenshots via JS -->
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -103,9 +133,8 @@
     </main>
 
     <!-- Footer Section -->
-    <footer class="w-full border-t border-gray-100 mt-20 py-12">
+    <footer class="w-full border-t border-gray-100 mt-20 py-12 relative z-10 bg-white">
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8 text-sm text-gray-600">
-            <!-- Left column -->
             <div class="space-y-3">
                 <p class="font-semibold text-gray-900">Возникли вопросы?</p>
                 <p class="hover:text-gray-900 cursor-pointer transition-colors">Быстро ответим!</p>
@@ -115,16 +144,14 @@
                     </a>
                 </p>
             </div>
-            <!-- Right column -->
             <div class="space-y-3">
                 <p class="font-semibold text-gray-900">Полезное</p>
                 <p class="hover:text-gray-900 cursor-pointer transition-colors">Новости о читах!</p>
-                <p class="hover:text-gray-900 cursor-pointer transition-colors"></p>
             </div>
         </div>
     </footer>
 
-    <!-- Modal Dialog (Custom Alert / Info Box) -->
+    <!-- Modal Dialog (Keep for About info) -->
     <div id="custom-modal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
         <div class="bg-white rounded-2xl max-w-md w-full mx-4 p-6 shadow-2xl transform scale-95 transition-transform duration-300" id="modal-content-box">
             <div class="flex justify-between items-center mb-4">
@@ -133,9 +160,7 @@
                     <i class="fa-solid fa-xmark text-lg"></i>
                 </button>
             </div>
-            <div id="modal-body" class="text-gray-600 text-sm leading-relaxed mb-6">
-                <!-- Modal dynamic text -->
-            </div>
+            <div id="modal-body" class="text-gray-600 text-sm leading-relaxed mb-6"></div>
             <div class="flex justify-end">
                 <button onclick="closeModal()" class="bg-gray-900 hover:bg-gray-800 text-white px-5 py-2.5 rounded-xl text-sm font-medium transition-colors">
                     Понятно
@@ -144,55 +169,48 @@
         </div>
     </div>
 
-    <!-- JavaScript Application Logic -->
     <script>
-        // Database of legendary CS:GO cheats matching user request
+        // Обновленная база данных. Добавлены массивы со скриншотами и ссылки на GitHub Releases.
+        // Замените ссылки downloadUrl на ваши актуальные линки из GitHub.
         const cheatsData = [
             {
                 name: "OneTap V3",
                 category: "Rage / HvH",
-                description: "Легендарный хвх софт эпохи 2020 года с непревзойденным Resolver и кастомными JS-скриптами.",
+                description: "Легендарный хвх софт эпохи 2020 года с непревзойденным Resolver и кастомными JS-скриптами. Включает в себя топовые анти-аимы и настраиваемый визуал.",
                 image: "https://placehold.co/600x350/1e293b/38bdf8?text=OneTap+V3",
-                version: "v3.0.3 Cracked"
+                version: "v3.0.3 Cracked",
+                downloadUrl: "https://github.com/YourName/YourRepo/releases/download/v1/onetap_v3.dll",
+                screenshots: [
+                    "https://placehold.co/600x350/0f172a/ffffff?text=OneTap+Menu+1",
+                    "https://placehold.co/600x350/0f172a/ffffff?text=OneTap+Visuals"
+                ]
             },
             {
                 name: "Airflow",
                 category: "Legit / Semi-Rage",
-                description: "Ультра-плавный софт с красивым интерфейсом, популярный среди любителей визуалов и красивых киллов.",
+                description: "Ультра-плавный софт с красивым интерфейсом, популярный среди любителей визуалов и красивых киллов. Идеально подходит для игры на прайме с высокими настройками легита.",
                 image: "https://placehold.co/600x350/0f172a/f43f5e?text=Airflow+CSGO",
-                version: "v2.4 Stable"
+                version: "v2.4 Stable",
+                downloadUrl: "https://github.com/YourName/YourRepo/releases/download/v1/airflow.dll",
+                screenshots: [
+                    "https://placehold.co/600x350/1e293b/ffffff?text=Airflow+Menu",
+                    "https://placehold.co/600x350/1e293b/ffffff?text=Airflow+Aimbot"
+                ]
             },
             {
                 name: "Fatality",
                 category: "HvH Classic",
-                description: "Культовый чит с уникальным звуковым сопровождением и мощным функционалом для серверных баталий.",
+                description: "Культовый чит с уникальным звуковым сопровождением и мощным функционалом для серверных баталий. Зарекомендовал себя как один из лучших рейдж-софтов своего времени.",
                 image: "https://placehold.co/600x350/111827/eab308?text=Fatality.win",
-                version: "Latest Build"
-            },
-            {
-                name: "Gamesense (Skeet)",
-                category: "Elite HvH",
-                description: "Элитный инвайт-чит, определивший стандарты хвх-сообщества CS:GO на годы вперед.",
-                image: "https://placehold.co/600x350/18181b/a855f7?text=Gamesense.pub",
-                version: "Archive Edition"
-            },
-            {
-                name: "Primordial",
-                category: "Modern Rage",
-                description: "Современный софт с гибкой настройкой визуальной части и высокой скоростью хитскана.",
-                image: "https://placehold.co/600x350/09090b/10b981?text=Primordial.dev",
-                version: "v1.9 Archive"
-            },
-            {
-                name: "Neverlose",
-                category: "HvH Dominator",
-                description: "Флагманский софт с продвинутой системой луа-скриптинга и потрясающим пользовательским опытом.",
-                image: "https://placehold.co/600x350/1e1b4b/6366f1?text=Neverlose.cc",
-                version: "Legacy Build"
+                version: "Latest Build",
+                downloadUrl: "https://github.com/YourName/YourRepo/releases/download/v1/fatality.dll",
+                screenshots: [
+                    "https://placehold.co/600x350/111827/ffffff?text=Fatality+Tab",
+                    "https://placehold.co/600x350/111827/ffffff?text=Fatality+Lua"
+                ]
             }
         ];
 
-        // Render cheat cards on load
         function renderCheats(items) {
             const grid = document.getElementById('cheats-grid');
             grid.innerHTML = '';
@@ -207,13 +225,13 @@
                 return;
             }
 
-            items.forEach((cheat, index) => {
+            items.forEach((cheat) => {
                 const card = document.createElement('div');
                 card.className = "bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group transform hover:-translate-y-1";
                 card.innerHTML = `
                     <div>
                         <div class="relative overflow-hidden aspect-video bg-gray-100">
-                            <img src="${cheat.image}" alt="${cheat.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x350/334155/ffffff?text=CSGO+Cheat'">
+                            <img src="${cheat.image}" alt="${cheat.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             <span class="absolute top-3 right-3 bg-black/60 backdrop-blur-md text-white text-xs font-medium px-2.5 py-1 rounded-lg">
                                 ${cheat.category}
                             </span>
@@ -227,9 +245,9 @@
                         </div>
                     </div>
                     <div class="p-5 pt-0">
-                        <button onclick="openCheatDetails('${cheat.name}')" class="w-full bg-gray-50 hover:bg-blue-600 hover:text-white text-gray-700 font-medium py-2.5 rounded-xl text-sm transition-all flex items-center justify-center gap-2 border border-gray-100 group-hover:border-transparent">
+                        <button onclick="openCheatPage('${cheat.name}')" class="w-full bg-gray-50 hover:bg-blue-600 hover:text-white text-gray-700 font-medium py-2.5 rounded-xl text-sm transition-all flex items-center justify-center gap-2 border border-gray-100 group-hover:border-transparent">
                             <span>Открыть архив</span>
-                            <i class="fa-solid fa-download text-xs"></i>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
                         </button>
                     </div>
                 `;
@@ -237,26 +255,75 @@
             });
         }
 
-        // View Switcher (Home <-> Catalog)
+        // Обновленная функция управления видимостью секций
         function switchView(viewName) {
-            const home = document.getElementById('home-section');
-            const catalog = document.getElementById('catalog-section');
+            const views = {
+                'home': document.getElementById('home-section'),
+                'catalog': document.getElementById('catalog-section'),
+                'product': document.getElementById('product-section')
+            };
 
-            if (viewName === 'catalog') {
-                home.classList.add('opacity-0', 'pointer-events-none', 'hidden', '-translate-y-4');
-                catalog.classList.remove('opacity-0', 'pointer-events-none', 'hidden', 'translate-y-4');
-                catalog.classList.add('opacity-100', 'translate-y-0');
-                renderCheats(cheatsData);
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            } else {
-                catalog.classList.add('opacity-0', 'pointer-events-none', 'hidden', 'translate-y-4');
-                home.classList.remove('opacity-0', 'pointer-events-none', 'hidden', '-translate-y-4');
-                home.classList.add('opacity-100', 'translate-y-0');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+            // Скрываем все
+            Object.values(views).forEach(view => {
+                view.classList.add('opacity-0', 'pointer-events-none', 'hidden');
+                // Добавляем эффект выезда снизу для скрытых
+                if (view.id !== 'home-section') view.classList.add('translate-y-4');
+                else view.classList.add('-translate-y-4');
+                
+                view.classList.remove('absolute', 'top-8', 'left-6', 'right-6'); // Очищаем позиционирование
+            });
+
+            // Показываем нужную
+            const activeView = views[viewName];
+            activeView.classList.remove('hidden');
+            
+            // Небольшая задержка для того, чтобы transition сработал после убирания display: none
+            setTimeout(() => {
+                activeView.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4', '-translate-y-4');
+                activeView.classList.add('opacity-100', 'translate-y-0');
+            }, 10);
+
+            // Если не главная, делаем абсолютной, чтобы контейнеры не ломали высоту при анимации
+            if(viewName !== 'home') {
+                activeView.classList.add('absolute', 'top-8', 'left-6', 'right-6');
             }
+
+            if (viewName === 'catalog') renderCheats(cheatsData);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Filter search
+        // Новая функция для открытия страницы конкретного чита
+        function openCheatPage(cheatName) {
+            const cheat = cheatsData.find(c => c.name === cheatName);
+            if (!cheat) return;
+
+            // Заполнение данных на странице товара
+            document.getElementById('product-title').innerText = cheat.name;
+            document.getElementById('product-category').innerText = cheat.category;
+            document.getElementById('product-version').innerText = cheat.version;
+            document.getElementById('product-description').innerText = cheat.description;
+            document.getElementById('product-download').href = cheat.downloadUrl;
+
+            // Заполнение скриншотов
+            const screenshotsContainer = document.getElementById('product-screenshots');
+            screenshotsContainer.innerHTML = '';
+            
+            if (cheat.screenshots && cheat.screenshots.length > 0) {
+                cheat.screenshots.forEach(src => {
+                    screenshotsContainer.innerHTML += `
+                        <div class="aspect-video bg-gray-100 rounded-xl overflow-hidden border border-gray-200">
+                            <img src="${src}" alt="Скриншот ${cheat.name}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer">
+                        </div>
+                    `;
+                });
+            } else {
+                screenshotsContainer.innerHTML = `<p class="text-gray-400 text-sm italic">Скриншоты пока не добавлены.</p>`;
+            }
+
+            // Переключаем вид
+            switchView('product');
+        }
+
         function filterCheats() {
             const query = document.getElementById('cheat-search').value.toLowerCase();
             const filtered = cheatsData.filter(c => 
@@ -267,14 +334,9 @@
             renderCheats(filtered);
         }
 
-        // Modal Functions
         function openAboutModal(e) {
             e.preventDefault();
             showModal("О нас (Кто мы?)", "Мы — энтузиасты и архивариусы старой школы CS:GO, объединившиеся ради сохранения наследия легендарных читов и HvH-культуры. Проект создан в исторических и образовательных целях.");
-        }
-
-        function openCheatDetails(cheatName) {
-            showModal(`Архив: ${cheatName}`, `Вы собираетесь получить доступ к файлам и конфигурациям для ${cheatName}. Все файлы проверены сообществом и хранятся в репозитории на GitHub.`);
         }
 
         function showModal(title, text) {
@@ -297,7 +359,6 @@
             box.classList.add('scale-95');
         }
 
-        // Initialize on load
         window.onload = function() {
             renderCheats(cheatsData);
         }
